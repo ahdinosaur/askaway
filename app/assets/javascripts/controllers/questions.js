@@ -22,7 +22,7 @@ askaway.controller('QuestionsCtrl', ['$scope', '$http', function( $scope, $http 
           question.vote_id = vote.id;
         })
         .error(function(data, status) {
-          if (status === 401) {
+          if (Math.floor(status / 100) === 4) { // 4xx status
             $('#login-modal').modal('show');
           }
           // FIXME handle other error statuses ... message box?
@@ -52,4 +52,3 @@ askaway.controller('QuestionsCtrl', ['$scope', '$http', function( $scope, $http 
 
 askaway.controller( 'QuestionFormCtrl', ['$scope', function( $scope ) {
 }]);
-
