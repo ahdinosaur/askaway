@@ -49,23 +49,48 @@ more separate. Each of these packages can be used independently outside of
 Rails. You can read more about Action Pack in
 link:files/vendor/rails/actionpack/README.html.
 
-
-## Getting Started
-
-1. At the command prompt, create a new Rails application:
-       ``rails new myapp`` (where ``myapp`` is the application name)
-
-2. Change directory to ``myapp`` and start the web server:
-       ``cd myapp; rails server`` (run with --help for options)
-
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
-
-4. Follow the guidelines to start developing your application. You can find
+Follow the guidelines to start developing your application. You can find
 the following resources handy:
 
 * The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
 * Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+
+
+## Installing askaway using Docker
+
+install [docker](https://docs.docker.com/installation/)
+
+setup the database config
+```bash
+mv config/database.yml.example config/database.yml
+```
+
+install postgres
+```bash
+docker pull postgres
+```
+
+run postgres daemon
+```bash
+docker run -d --name pg postgres
+```
+
+build askaway
+```bash
+docker build -t askaway .
+```
+
+run askaway
+```
+docker run -p 3000:3000 --link pg:postgres --name ask askaway
+```
+
+Ctrl-C to stop image
+
+restart askaway
+```
+docker restart ask
+```
 
 
 ## Debugging Rails
